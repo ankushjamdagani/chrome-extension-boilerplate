@@ -1,21 +1,18 @@
-import * as React from "react"
-import * as ReactDOM from "react-dom"
+import * as React from "react";
+import * as ReactDOM from "react-dom";
 
-import "../styles/popup.css"
-
-class Hello extends React.Component {
-    render() {
-        return (
-            <div className="popup-padded">
-                <h1>{ chrome.i18n.getMessage("l10nHello") }</h1>
-            </div>
-        )
-    }
+function startScraping() {
+  console.log("click START_SCRAPING");
+  chrome.runtime.sendMessage({ type: "START_SCRAPING" });
 }
 
-// --------------
+function UglyScrapper() {
+  return (
+    <div className="popup-padded">
+      <h1>CNBC</h1>
+      <button onClick={startScraping}>Collect Data</button>
+    </div>
+  );
+}
 
-ReactDOM.render(
-    <Hello />,
-    document.getElementById('root')
-)
+ReactDOM.render(<UglyScrapper />, document.getElementById("root"));
